@@ -2,6 +2,7 @@
 using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Controller;
+using MediaBrowser.Controller.Plugins;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Serialization;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,12 +23,11 @@ namespace JellyfinRecapSkipper
         public override string Description => "Detects and skips previously on recaps in TV series.";
     }
 
-    public static class ServiceRegistration
+    public class PluginServiceRegistrator : IPluginServiceRegistrator
     {
-        public static IServiceCollection AddRecapSkipper(this IServiceCollection services)
+        public void RegisterServices(IServiceCollection serviceCollection, IServerApplicationHost applicationHost)
         {
-            services.AddSingleton<IMediaSegmentProvider, RecapSegmentProvider>();
-            return services;
+            serviceCollection.AddSingleton<IMediaSegmentProvider, RecapSegmentProvider>();
         }
     }
 }
