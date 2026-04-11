@@ -28,6 +28,7 @@ namespace JellyfinRecapSkipper
         public void RegisterServices(IServiceCollection serviceCollection, IServerApplicationHost applicationHost)
         {
             serviceCollection.AddSingleton<IMediaSegmentProvider, RecapSegmentProvider>();
+            Console.WriteLine("=== RECAP SKIPPER: RegisterServices called ===");
         }
     }
 }
